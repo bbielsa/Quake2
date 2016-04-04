@@ -1,0 +1,58 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  g_ai.c
+  g_chase.c
+  g_cmds.c
+  g_combat.c
+  g_func.c
+  g_items.c
+  g_main.c
+  g_misc.c
+  g_monster.c
+  g_phys.c
+  g_save.c
+  g_spawn.c
+  g_svcmds.c
+  g_target.c
+  g_trigger.c
+  g_turret.c
+  g_utils.c
+  g_weapon.c
+  m_actor.c
+  m_berserk.c
+  Generating Code...
+  Compiling...
+  m_boss2.c
+  m_boss3.c
+  m_boss31.c
+  m_boss32.c
+  m_brain.c
+  m_chick.c
+  m_flash.c
+  m_flipper.c
+  m_float.c
+  m_flyer.c
+  m_gladiator.c
+  m_gunner.c
+  m_hover.c
+  m_infantry.c
+  m_insane.c
+  m_medic.c
+  m_move.c
+  m_mutant.c
+  m_parasite.c
+  m_soldier.c
+  Generating Code...
+  Compiling...
+  m_supertank.c
+  m_tank.c
+  p_client.c
+  p_hud.c
+  p_trail.c
+  p_view.c
+  p_weapon.c
+  q_shared.c
+  Generating Code...
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1189,5): warning MSB8012: TargetPath(C:\Program Files (x86)\Steam\steamapps\common\Quake 2\baseq2\gamex86.dll.dll) does not match the Linker's OutputFile property value (C:\Users\Brandon\Desktop\Quake2 and Source\Quake 2\baseq2\gamex86.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(1191,5): warning MSB8012: TargetName(gamex86.dll) does not match the Linker's OutputFile property value (gamex86). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
+  game.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\baseq2\gamex86.dll.dll
