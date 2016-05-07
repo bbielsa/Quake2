@@ -627,6 +627,12 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 #endif
 
 char *single_statusbar = 
+// BGB7 BEGIN
+// draw temperature
+"xv 0 "
+"yv 0 "
+"num 2 31 "
+// BGB7 END
 "yb	-24 "
 
 // health

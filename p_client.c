@@ -600,6 +600,11 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.health			= 100;
 	client->pers.max_health		= 100;
 
+// BGB7 BEGIN
+	client->pers.temperature = 69;
+	client->pers.max_temperature = 100;
+// BGB7 END
+
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
 	client->pers.max_rockets	= 50;
@@ -650,6 +655,11 @@ void FetchClientEntData (edict_t *ent)
 {
 	ent->health = ent->client->pers.health;
 	ent->max_health = ent->client->pers.max_health;
+// BGB7 BEGIN
+	// load temperature from persistent data
+	ent->temperature = ent->client->pers.temperature;
+	ent->max_temperature = ent->client->pers.max_temperature;
+// BGB7 END
 	ent->flags |= ent->client->pers.savedFlags;
 	if (coop->value)
 		ent->client->resp.score = ent->client->pers.score;

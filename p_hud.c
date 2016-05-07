@@ -367,6 +367,14 @@ void G_SetStats (edict_t *ent)
 	ent->client->ps.stats[STAT_HEALTH_ICON] = level.pic_health;
 	ent->client->ps.stats[STAT_HEALTH] = ent->health;
 
+// BGB7 BEGIN
+	//
+	// temperature
+	//
+	ent->client->ps.stats[STAT_TEMPERATURE] = ent->temperature;
+// BGB7 END
+
+
 	//
 	// ammo
 	//

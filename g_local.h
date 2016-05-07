@@ -823,6 +823,11 @@ typedef struct
 	int			max_health;
 	int			savedFlags;
 
+// BGB7 BEGIN
+	int temperature;
+	int max_temperature;
+// BGB7 END
+
 	int			selected_item;
 	int			inventory[MAX_ITEMS];
 
@@ -1035,6 +1040,10 @@ struct edict_s
 
 	int			health;
 	int			max_health;
+// BGB7 BEGIN
+	int			temperature;
+	int			max_temperature;
+// BGB7 END
 	int			gib_health;
 	int			deadflag;
 	qboolean	show_hostile;
