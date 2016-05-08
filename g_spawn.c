@@ -631,7 +631,7 @@ char *single_statusbar =
 // draw temperature
 "xv 0 "
 "yv 0 "
-"num 2 31 "
+"num 3 31 "
 // BGB7 END
 "yb	-24 "
 
@@ -836,7 +836,7 @@ void SP_worldspawn (edict_t *ent)
 	level.pic_health = gi.imageindex ("i_health");
 	gi.imageindex ("help");
 	gi.imageindex ("field_3");
-
+	
 	if (!st.gravity)
 		gi.cvar_set("sv_gravity", "800");
 	else

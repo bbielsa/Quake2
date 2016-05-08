@@ -1578,6 +1578,16 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	level.current_entity = ent;
 	client = ent->client;
 
+// BGB7 BEGIN
+	// update player speed based on temperature
+	int speed = 100 + ent->temperature;
+	char client_speed[10];
+
+	gi.cvar_set("cl_forwardspeed", itoa(speed, client_speed, 10));
+	gi.cvar_set("cl_sidespeed", itoa(speed, client_speed, 10));
+// BGB7 END
+
+
 	if (level.intermissiontime)
 	{
 		client->ps.pmove.pm_type = PM_FREEZE;

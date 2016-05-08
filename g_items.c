@@ -469,8 +469,11 @@ qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
 
 // BGB7 BEGIN
 	// increase temperature on ammo pickup
-	other->temperature += 5;
+	int temp = other->temperature;
+	int max = other->max_temperature;
+	other->temperature = (temp < max) ? temp + 5 : temp;
 // BGB7 END
+
 	weapon = (ent->item->flags & IT_WEAPON);
 	if ( (weapon) && ( (int)dmflags->value & DF_INFINITE_AMMO ) )
 		count = 1000;
@@ -545,6 +548,13 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 			return false;
 
 	other->health += ent->count;
+
+// BGB7 BEGIN
+	// increase temperature on health pickup
+	int temp = other->temperature;
+	int max = other->max_temperature;
+	other->temperature = (temp < max) ? temp + 15 : temp;
+// BGB7 END
 
 	if (!(ent->style & HEALTH_IGNORE_MAX))
 	{
@@ -759,7 +769,7 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 	if (taken)
 	{
 		// flash the screen
-		other->client->bonus_alpha = 1.0;	 // 0.25
+		other->client->bonus_alpha = 0.25;
 
 		// show icon and name on status bar
 		other->client->ps.stats[STAT_PICKUP_ICON] = gi.imageindex(ent->item->icon);

@@ -890,6 +890,7 @@ void ClientCommand (edict_t *ent)
 {
 	char	*cmd;
 
+
 	if (!ent->client)
 		return;		// not fully in game yet
 
