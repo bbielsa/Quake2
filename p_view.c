@@ -459,8 +459,14 @@ void SV_CalcBlend (edict_t *ent)
 		SV_AddBlend (ent->client->damage_blend[0],ent->client->damage_blend[1]
 		,ent->client->damage_blend[2], ent->client->damage_alpha, ent->client->ps.blend);
 
+// BGB7 BEGIN
+	/*
 	if (ent->client->bonus_alpha > 0)
 		SV_AddBlend (0.85, 0.7, 0.3, ent->client->bonus_alpha, ent->client->ps.blend);
+	*/
+	// shade screen white based on temperature
+	SV_AddBlend(1.0, 1.0, 1.0, 1.0 - ent->temperature / ((float)ent->max_temperature), ent->client->ps.blend);
+// BGB7 END
 
 	// drop the damage value
 	ent->client->damage_alpha -= 0.06;

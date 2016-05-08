@@ -601,7 +601,7 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.max_health		= 100;
 
 // BGB7 BEGIN
-	client->pers.temperature = 69;
+	client->pers.temperature = 100;
 	client->pers.max_temperature = 100;
 // BGB7 END
 

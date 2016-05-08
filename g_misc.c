@@ -872,6 +872,9 @@ void barrel_explode (edict_t *self)
 	vec3_t	save;
 
 	T_RadiusDamage (self, self->activator, self->dmg, NULL, self->dmg+40, MOD_BARREL);
+// BGB7 BEGIN
+	self->activator->temperature -= 10;
+// BGB7 END
 
 	VectorCopy (self->s.origin, save);
 	VectorMA (self->absmin, 0.5, self->size, self->s.origin);
