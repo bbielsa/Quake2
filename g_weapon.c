@@ -136,6 +136,17 @@ static void fire_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
 		VectorMA (end, r, right, end);
 		VectorMA (end, u, up, end);
 
+// BGB7 BEGIN
+		vec3_t spray;
+		spray[PITCH] = self->client->v_angle[PITCH] + r / 1000;
+		spray[YAW] = self->client->v_angle[YAW] + u / 1000;
+		spray[ROLL] = self->client->v_angle[ROLL];
+		AngleVectors(spray, forward, NULL, NULL);
+
+		fire_grenade2(self, start, spray, 100, 1000, 100, 1, true);
+		return;
+// BGB7 END
+
 		if (gi.pointcontents (start) & MASK_WATER)
 		{
 			water = true;
@@ -402,6 +413,14 @@ static void Grenade_Explode (edict_t *ent)
 			mod = MOD_GRENADE;
 		T_Damage (ent->enemy, ent, ent->owner, dir, ent->s.origin, vec3_origin, (int)points, (int)points, DAMAGE_RADIUS, mod);
 	}
+// BGB7 BEGIN
+	else
+	{
+		// dont explode if the grenade did not collide with an enemy
+		G_FreeEdict(ent);
+		return;
+	}
+// BGB7 END
 
 	if (ent->spawnflags & 2)
 		mod = MOD_HELD_GRENADE;
@@ -512,6 +531,7 @@ void fire_grenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int 
 	VectorMA (grenade->velocity, 200 + crandom() * 10.0, up, grenade->velocity);
 	VectorMA (grenade->velocity, crandom() * 10.0, right, grenade->velocity);
 	VectorSet (grenade->avelocity, 300, 300, 300);
+
 	grenade->movetype = MOVETYPE_BOUNCE;
 	grenade->clipmask = MASK_SHOT;
 	grenade->solid = SOLID_BBOX;
@@ -520,9 +540,13 @@ void fire_grenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int 
 	VectorClear (grenade->maxs);
 	grenade->s.modelindex = gi.modelindex ("models/objects/grenade2/tris.md2");
 	grenade->owner = self;
+// BGB7 BEGIN
 	grenade->touch = Grenade_Touch;
-	grenade->nextthink = level.time + timer;
+
+	// Disable timed explosion
+	grenade->nextthink = level.time + timer; 
 	grenade->think = Grenade_Explode;
+// BGB7 END
 	grenade->dmg = damage;
 	grenade->dmg_radius = damage_radius;
 	grenade->classname = "hgrenade";

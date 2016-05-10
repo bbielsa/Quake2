@@ -650,8 +650,12 @@ void T_RadiusDamage (edict_t *inflictor, edict_t *attacker, float damage, edict_
 #define DEFAULT_BULLET_VSPREAD	500
 #define DEFAULT_SHOTGUN_HSPREAD	1000
 #define DEFAULT_SHOTGUN_VSPREAD	500
-#define DEFAULT_DEATHMATCH_SHOTGUN_COUNT	12
-#define DEFAULT_SHOTGUN_COUNT	12
+// BGB7 BEGIN
+// #define DEFAULT_DEATHMATCH_SHOTGUN_COUNT	12
+#define DEFAULT_DEATHMATCH_SHOTGUN_COUNT	4
+// #define DEFAULT_SHOTGUN_COUNT	12
+#define DEFAULT_SHOTGUN_COUNT	4
+// BGB7 END
 #define DEFAULT_SSHOTGUN_COUNT	20
 
 //
@@ -1043,6 +1047,7 @@ struct edict_s
 // BGB7 BEGIN
 	int			temperature;
 	int			max_temperature;
+	float		last_shot_time;
 // BGB7 END
 	int			gib_health;
 	int			deadflag;
