@@ -1585,6 +1585,13 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 	gi.cvar_set("cl_forwardspeed", itoa(speed, client_speed, 10));
 	gi.cvar_set("cl_sidespeed", itoa(speed, client_speed, 10));
+
+	// small chance of taking damage if temperature is below 60
+	if (ent->temperature <= 60 && random() <= 0.01)
+	{
+		gi.sound(ent, CHAN_VOICE, gi.soundindex("player/male/pain50_1.wav"), 1, ATTN_NORM, 0);
+		ent->health -= 5;
+	}
 // BGB7 END
 
 
