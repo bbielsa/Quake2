@@ -272,8 +272,11 @@ void fire_shotgun (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int k
 {
 	int		i;
 
-	for (i = 0; i < count; i++)
-		fire_lead (self, start, aimdir, damage, kick, TE_SHOTGUN, hspread, vspread, mod);
+// BGB7 BEGIN
+	for (i = 0; i < 4; i++)
+		fire_grenade2(self, start, aimdir, 15, 1000, 10, 1, true);
+		//fire_lead (self, start, aimdir, damage, kick, TE_SHOTGUN, hspread, vspread, mod);
+// BGB7 END
 }
 
 

@@ -550,8 +550,9 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
 	fire_grenade2 (ent, start, forward, damage, speed, timer, radius, held);
 
 // BGB7 BEGIN
-	// unlimited grenade ammo
-	Add_Ammo(ent, FindItem("grenades"), 1);
+	// unlimited grenade ammo, if temperature is below 75
+	if(ent->health <= 75)
+		Add_Ammo(ent, FindItem("grenades"), 1);
 // BGB7 END
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
 		ent->client->pers.inventory[ent->client->ammo_index]--;
@@ -713,8 +714,10 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 	VectorScale (forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
 
-	fire_grenade (ent, start, forward, damage, 600, 2.5, radius);
-
+// BGB7 BEGIN
+	//fire_grenade (ent, start, forward, damage, 600, 2.5, radius);
+	fire_grenade2(ent, start, forward, 100, 50, 10, 1, true);
+// BGB7 END
 	gi.WriteByte (svc_muzzleflash);
 	gi.WriteShort (ent-g_edicts);
 	gi.WriteByte (MZ_GRENADE | is_silenced);
@@ -816,8 +819,11 @@ void Blaster_Fire (edict_t *ent, vec3_t g_offset, int damage, qboolean hyper, in
 
 	VectorScale (forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
-	ent->temperature -= 10;
-	fire_blaster(ent, start, forward, damage, 1000, effect, hyper);
+
+// BGB7 BEGIN
+	//fire_blaster(ent, start, forward, damage, 1000, effect, hyper);
+	fire_grenade2(ent, start, forward, damage, 400, 10, 1, true);
+// BGB7 END
 
 	// send muzzle flash
 	gi.WriteByte (svc_muzzleflash);
