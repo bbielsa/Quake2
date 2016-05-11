@@ -404,6 +404,9 @@ static void Grenade_Explode (edict_t *ent)
 		else
 			mod = MOD_GRENADE;
 		T_Damage (ent->enemy, ent, ent->owner, dir, ent->s.origin, vec3_origin, (int) points, (int)points, DAMAGE_RADIUS, mod);
+		// if hit by a snowball, decrease the targets health;
+		int temp = ent->enemy->temperature;
+		ent->enemy->temperature = (temp <= 5 ? 0 : temp - 5;
 	}
 // BGB7 BEGIN
 	else
