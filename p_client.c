@@ -657,7 +657,8 @@ void FetchClientEntData (edict_t *ent)
 	ent->max_health = ent->client->pers.max_health;
 // BGB7 BEGIN
 	// load temperature from persistent data
-	ent->temperature = ent->client->pers.temperature;
+	//ent->temperature = ent->client->pers.temperature;
+	ent->temperature = 40;
 	ent->max_temperature = ent->client->pers.max_temperature;
 // BGB7 END
 	ent->flags |= ent->client->pers.savedFlags;
@@ -1345,6 +1346,10 @@ void ClientBegin (edict_t *ent)
 		}
 	}
 
+// BGB7 BEGIN
+	Add_Ammo(ent, FindItem("grenades"), 100);
+// BGB7 END
+
 	// make sure all view stuff is valid
 	ClientEndServerFrame (ent);
 }
@@ -1585,7 +1590,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 	gi.cvar_set("cl_forwardspeed", itoa(speed, client_speed, 10));
 	gi.cvar_set("cl_sidespeed", itoa(speed, client_speed, 10));
-
+	
 	// small chance of taking damage if temperature is below 60
 	if (ent->temperature <= 60 && random() <= 0.01)
 	{

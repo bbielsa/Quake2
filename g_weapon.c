@@ -136,17 +136,6 @@ static void fire_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
 		VectorMA (end, r, right, end);
 		VectorMA (end, u, up, end);
 
-// BGB7 BEGIN
-		vec3_t spray;
-		spray[PITCH] = self->client->v_angle[PITCH] + r / 1000;
-		spray[YAW] = self->client->v_angle[YAW] + u / 1000;
-		spray[ROLL] = self->client->v_angle[ROLL];
-		AngleVectors(spray, forward, NULL, NULL);
-
-		fire_grenade2(self, start, spray, 100, 1000, 100, 1, true);
-		return;
-// BGB7 END
-
 		if (gi.pointcontents (start) & MASK_WATER)
 		{
 			water = true;
@@ -411,7 +400,7 @@ static void Grenade_Explode (edict_t *ent)
 			mod = MOD_HANDGRENADE;
 		else
 			mod = MOD_GRENADE;
-		T_Damage (ent->enemy, ent, ent->owner, dir, ent->s.origin, vec3_origin, (int)points, (int)points, DAMAGE_RADIUS, mod);
+		T_Damage (ent->enemy, ent, ent->owner, dir, ent->s.origin, vec3_origin, (int) points, (int)points, DAMAGE_RADIUS, mod);
 	}
 // BGB7 BEGIN
 	else

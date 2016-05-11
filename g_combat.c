@@ -367,6 +367,13 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 	if (!targ->takedamage)
 		return;
 
+// BGB7 BEGIN
+	// scale damage based on temperature
+	int scaled_damage = (int)(((float)damage) * ((float)targ->temperature / targ->max_temperature));
+	//damage *= (int)((float)targ->temperature / targ->max_temperature);
+	gi.cprintf(targ->enemy, PRINT_DEVELOPER, "Old damage: %d\nScaled Damage: %d\n", damage, scaled_damage);
+// BGB7 END
+
 	// friendly fire avoidance
 	// if enabled you can't hurt teammates (but you can hurt yourself)
 	// knockback still occurs

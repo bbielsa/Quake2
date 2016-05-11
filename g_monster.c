@@ -42,7 +42,6 @@ void monster_fire_blaster (edict_t *self, vec3_t start, vec3_t dir, int damage, 
 void monster_fire_grenade (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int speed, int flashtype)
 {
 	fire_grenade (self, start, aimdir, damage, speed, 2.5, damage+40);
-
 	gi.WriteByte (svc_muzzleflash2);
 	gi.WriteShort (self - g_edicts);
 	gi.WriteByte (flashtype);

@@ -545,10 +545,14 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
 	timer = ent->client->grenade_time - level.time;
 	speed = GRENADE_MINSPEED + (GRENADE_TIMER - timer) * ((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER);
 // BGB7 BEGIN
-	speed *= 4;
+	speed *= 2;
 // BGB7 END
 	fire_grenade2 (ent, start, forward, damage, speed, timer, radius, held);
 
+// BGB7 BEGIN
+	// unlimited grenade ammo
+	Add_Ammo(ent, FindItem("grenades"), 1);
+// BGB7 END
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
 		ent->client->pers.inventory[ent->client->ammo_index]--;
 
